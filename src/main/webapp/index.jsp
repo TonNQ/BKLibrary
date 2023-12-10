@@ -85,7 +85,7 @@
         </ul>
         <a href="" class="text-base font-medium text-blue-600 my-2 hover:text-blue-800">Đăng xuất</a>
     </div>
-    <iframe src="test.html" class="flex-1 w-[80%] bg-blue-100"></iframe>
+    <iframe src="sample_add_center.html" class="flex-1 w-[80%] bg-blue-100"></iframe>
 </div>
 </body>
 </html>
