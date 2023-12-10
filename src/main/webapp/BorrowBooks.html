@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/css/multi-select-tag.css">-->
+<!--    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/js/multi-select-tag.js"></script>-->
+    <link rel="stylesheet" href="css/multi-select.css">
+    <script src="js/multi-select.js"></script>
+</head>
+<body>
+<div class="flex flex-col">
+    <div class="inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-hidden h-[100vh]">
+            <div class="flex flex-row justify-between items-center py-3 my-3 border-b-[2px] border-blue-400">
+                <div class="text-2xl text-blue-600 uppercase font-bold">Mượn sách</div>
+            </div>
+            <form method="post" name="" action="">
+                <div class="flex flex-row w-[100%]">
+                    <div class="w-[100%] flex flex-col my-2">
+                        <label for="studentId" class="text-base font-medium mb-1">Mã số sinh viên: </label>
+                        <input type="text" name="studentId" id="studentId" placeholder="Nhập mã số sinh viên" class="rounded-md px-3 py-2 mb-1" required>
+                        <span class="text-red-500 font-medium text-xs">Vui lòng nhập trường này</span>
+                    </div>
+                </div>
+                <div class="flex flex-row w-[100%]">
+                    <div class="w-[100%] flex flex-col my-2">
+                        <label for="selection" class="text-base font-medium mb-2">Danh mục: </label>
+                        <select id="selection" multiple>
+                            <option value="1">Tất cả</option>
+                            <option value="2">Sách chưa trả</option>
+                            <option value="3">Quá hạn</option>
+                            <option value="4">Tất cả 2</option>
+                            <option value="5">Sách chưa trả 2</option>
+                            <option value="6">Quá hạn 2</option>
+                            <option value="7">Tất cả 3</option>
+                            <option value="8">Sách chưa trả 3</option>
+                            <option value="9">Quá hạn 3</option>
+                            <option value="10">Tất cả 4</option>
+                            <option value="11">Sách chưa trả 4</option>
+                            <option value="12">Quá hạn 4</option>
+                        </select>
+                        <span class="text-red-500 font-medium text-xs mt-1">Vui lòng nhập trường này</span>
+                    </div>
+                </div>
+                <div class="flex flex-row justify-end mt-4">
+                    <input type="submit" value="Thêm sách mượn" class="text-center mr-2 py-2 px-4 min-w-[200px] uppercase text-white bg-blue-500 hover:bg-blue-600 hover:cursor-pointer rounded-md font-semibold" onclick="handleSubmit()">
+                    <a href="" class="text-center ml-2 py-2 px-4 min-w-[200px] uppercase text-white bg-stone-400 hover:bg-stone-500 hover:cursor-pointer rounded-md font-semibold">Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    var selected = new MultiSelectTag('selection')
+    function handleSubmit() {
+        console.log(selected.getValues())
+    }
+</script>
+</body>
+</html>
