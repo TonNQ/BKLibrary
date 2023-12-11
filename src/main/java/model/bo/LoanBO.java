@@ -16,4 +16,8 @@ public class LoanBO {
     public void returnBook(int id) throws SQLException {
         loanDAO.returnBook(id);
     }
+
+    public void addLoanList(ArrayList<Loan> loanList) throws SQLException {
+        loanDAO.addLoanList(loanList);
+    }
 }
