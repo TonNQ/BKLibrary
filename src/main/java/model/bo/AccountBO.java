@@ -9,6 +9,10 @@ import model.dao.AccountDAO;
 public class AccountBO {
     AccountDAO accountDAO = new AccountDAO();
 
+    public Account getAccount(String username, String password) throws Exception {
+        return accountDAO.getAccount(username, password);
+    }
+
     public ArrayList<Account> searchAccounts(String searchKey, int status) throws SQLException {
         return accountDAO.searchAccounts(searchKey, status);
     }

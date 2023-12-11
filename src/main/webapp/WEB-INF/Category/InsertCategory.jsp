@@ -15,7 +15,6 @@
             <div class="overflow-hidden">
                 <div class="flex flex-row justify-between items-center py-3 my-3 border-b-[2px] border-blue-400">
                     <div class="text-2xl text-blue-600 uppercase font-bold">Thêm danh mục</div>
-                    <a href="" class="text-center mr-2 py-2 px-4 min-w-[200px] uppercase text-white bg-blue-500 hover:bg-blue-600 hover:cursor-pointer rounded-md font-semibold">Thêm file</a>
                 </div>
                 <form method="post" name="add" action="?action=insert" onsubmit="return validateForm()">
                     <div class="flex flex-row w-[100%]">

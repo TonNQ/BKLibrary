@@ -8,6 +8,23 @@ import model.bean.Account;
 public class AccountDAO {
     Connection conn = ConnectionToDB.ConnectToMySQL();
 
+    public Account getAccount(String username, String password) throws SQLException {
+        Connection conn = ConnectionToDB.ConnectToMySQL();
+        PreparedStatement preparedStatement = conn.prepareStatement("select * from account where username=? and password=?");
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, password);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Account account = new Account();
+            account.setId(resultSet.getInt("id"));
+            account.setUsername(resultSet.getString("username"));
+            account.setIsAdmin(resultSet.getBoolean("isAdmin"));
+            return account;
+        }
+        return null;
+    }
+
+
     public ArrayList<Account> searchAccounts(String searchKey, int status) throws SQLException {
         ArrayList<Account> accounts = new ArrayList<>();
 
