@@ -1,22 +1,23 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.bean.Book" %>
+<%@ page import="model.bean.Category" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Kho sách</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 <div class="flex flex-row w-[100wh] h-[100vh] bg-blue-100">
-    <%@ include file="../Common/Sidebar.jsp" %>
     <div class="flex-1 overflow-x-auto sm:mx-0.5 lg:mx-0.5">
         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">
-                <div class="flex flex-row justify-between py-3 my-3 border-b-[2px] border-pink-400">
+                <div class="flex flex-row justify-between py-3 my-3 border-b-[2px] border-blue-400">
                     <div class="text-2xl text-blue-600 uppercase font-bold">Kho sách</div>
-                    <a href="" class="py-2 px-3 text-white bg-blue-500 hover:bg-blue-600 rounded-md font-semibold">Thêm sách mới</a>
+                    <a href="book?mod=insert" class="py-2 px-3 text-white bg-blue-500 hover:bg-blue-600 rounded-md font-semibold">Thêm sách mới</a>
                 </div>
                 <div class="flex flex-row justify-between my-4">
                     <div class="flex bg-white px-3 py-2 rounded-md w-[300px]">
@@ -27,10 +28,15 @@
                     </div>
                     <div class="flex items-center justify-center">
                         <span class="mr-2 font-normal text-base">Lọc: </span>
-                        <select class="min-w-[200px] rounded-md px-3 py-2">
-                            <option value="" selected>Tất cả</option>
-                            <option value="">Sách chưa trả</option>
-                            <option value="">Quá hạn</option>
+                        <select class="min-w-[200px] rounded-md px-3 py-2" id="filter">
+                            <option value="">Tất cả</option>
+                            <%
+                                ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categoryList");
+                                for (int i = 0; i < categories.size(); i++) {
+                                    Category category = categories.get(i);
+                            %>
+                            <option value="<%= category.getName() %>"><%= category.getName() %></option>
+                            <% } %>
                         </select>
                     </div>
                 </div>
@@ -54,6 +60,9 @@
                         </th>
                         <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
                             Số lượng
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+                            Thao tác
                         </th>
                     </tr>
                     </thead>
@@ -84,6 +93,20 @@
                         <td class="text-sm text-gray-900 font-normal px-6 py-4 whitespace-nowrap text-center">
                             <%= book.getQuantity() %>
                         </td>
+                        <td class="text-sm text-gray-900 font-normal px-6 py-4 whitespace-nowrap text-center">
+                            <ul class="flex justify-evenly text-base">
+                                <li>
+                                    <a href="?mod=update&id=<%= book.getId()%>">
+                                        <i class="view-icon fa-regular fa-pen-to-square"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" class="action-delete" onclick="deleteBook(<%= book.getId() %>)">
+                                        <i class="view-icon fa-regular fa-trash-can"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
                     </tr>
                     <% } %>
                     </tbody>
@@ -92,5 +115,66 @@
         </div>
     </div>
 </div>
+<script>
+    const handleSearchAndFilter = () => {
+        const search = document.getElementById('search');
+        const filter = document.getElementById('filter');
+
+        search.addEventListener('keyup', () => {
+            searchAndFilterLogic(search, filter);
+        })
+        filter.addEventListener('change', () => {
+            searchAndFilterLogic(search, filter);
+        })
+    }
+    handleSearchAndFilter();
+
+    function deleteBook(bookId) {
+        if (confirm('Bạn có chắc chắn muốn xóa?')) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('DELETE', '?action=delete&id=' + bookId, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send();
+        }
+        window.reload();
+    }
+    function searchAndFilterLogic(s, f) {
+        const searchString = s.value.toLowerCase();
+        const table = document.getElementsByTagName('tbody')[0];
+        const rows = table.getElementsByTagName('tr');
+        let index = 1;
+
+        Array.from(rows).forEach((row) => {
+            const tdIndex = row.getElementsByTagName('td')[0];
+            const tdId = row.getElementsByTagName('td')[1];
+            const tdName = row.getElementsByTagName('td')[2];
+            const tdCategory = row.getElementsByTagName('td')[4];
+
+            const textIdValue = tdId.textContent || tdId.innerHTML;
+            const textNameValue = tdName.textContent || tdName.innerHTML;
+            const textCategoryValue = tdCategory.textContent || tdCategory.innerHTML;
+
+            if ((textIdValue.toLowerCase().indexOf(searchString) > -1 || textNameValue.toLowerCase().indexOf(searchString) > -1)
+                && (textCategoryValue.toLowerCase().indexOf(f.value.toLowerCase()) > -1)) {
+                row.style.display = '';
+                tdIndex.textContent = (index++).toString();
+                if (index % 2 === 0) {
+                    row.classList.remove('bg-white');
+                    row.classList.add('bg-blue-200');
+                } else {
+                    row.classList.remove('bg-blue-200');
+                    row.classList.add('bg-white');
+                }
+            } else {
+                row.style.display = 'none';
+            }
+        })
+    }
+</script>
 </body>
 </html>

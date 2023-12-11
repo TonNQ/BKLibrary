@@ -25,46 +25,6 @@ public class BookDAO {
         return listBook;
     }
 
-    public ArrayList<Book> getBooksById(String id) throws SQLException {
-        ArrayList<Book> listBook = new ArrayList<>();
-        Connection conn = ConnectionToDB.ConnectToMySQL();
-        PreparedStatement stmt = conn.prepareStatement("select * from book join category on book.CategoryId = category.Id where Id=?");
-        stmt.setString(1, id);
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            Book book = new Book();
-            book.setId(rs.getString("Id"));
-            book.setName(rs.getString("Name"));
-            book.setAuthor(rs.getString("Author"));
-            book.setQuantity(rs.getInt("Quantity"));
-            book.setCategoryId(rs.getInt("CategoryId"));
-            book.setCategoryName(rs.getString("category.Name"));
-            listBook.add(book);
-        }
-        conn.close();
-        return listBook;
-    }
-
-    public ArrayList<Book> getBooksByName(String name) throws SQLException {
-        ArrayList<Book> listBook = new ArrayList<>();
-        Connection conn = ConnectionToDB.ConnectToMySQL();
-        PreparedStatement stmt = conn.prepareStatement("select * from book join category on book.CategoryId = category.Id where Name like ?");
-        stmt.setString(1, "%" + name + "%");
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            Book book = new Book();
-            book.setId(rs.getString("Id"));
-            book.setName(rs.getString("Name"));
-            book.setAuthor(rs.getString("Author"));
-            book.setQuantity(rs.getInt("Quantity"));
-            book.setCategoryId(rs.getInt("CategoryId"));
-            book.setCategoryName(rs.getString("category.Name"));
-            listBook.add(book);
-        }
-        conn.close();
-        return listBook;
-    }
-
     public void addBook(Book book) throws SQLException {
         Connection conn = ConnectionToDB.ConnectToMySQL();
         PreparedStatement stmt = conn.prepareStatement("insert into book values(?,?,?,?,?)");
@@ -91,9 +51,40 @@ public class BookDAO {
 
     public void deleteBook(String id) throws SQLException {
         Connection conn = ConnectionToDB.ConnectToMySQL();
-        PreparedStatement stmt = conn.prepareStatement("delete from book where Id=?");
+        PreparedStatement stmt = conn.prepareStatement("delete from libraryloan where BookId=?");
+        stmt.setString(1, id);
+        stmt.executeUpdate();
+        stmt = conn.prepareStatement("delete from book where Id=?");
         stmt.setString(1, id);
         stmt.executeUpdate();
         conn.close();
+    }
+
+    public boolean isIdExist(String id) throws SQLException {
+        Connection conn = ConnectionToDB.ConnectToMySQL();
+        PreparedStatement stmt = conn.prepareStatement("select * from book where Id=?");
+        stmt.setString(1, id);
+        ResultSet rs = stmt.executeQuery();
+        boolean result = rs.next();
+        conn.close();
+        return result;
+    }
+
+    public Book getBookById(String id) throws SQLException {
+        Connection conn = ConnectionToDB.ConnectToMySQL();
+        PreparedStatement stmt = conn.prepareStatement("select * from book join category on book.CategoryId = category.Id where book.Id=?");
+        stmt.setString(1, id);
+        ResultSet rs = stmt.executeQuery();
+        Book book = new Book();
+        while (rs.next()) {
+            book.setId(rs.getString("Id"));
+            book.setName(rs.getString("Name"));
+            book.setAuthor(rs.getString("Author"));
+            book.setQuantity(rs.getInt("Quantity"));
+            book.setCategoryId(rs.getInt("CategoryId"));
+            book.setCategoryName(rs.getString("category.Name"));
+        }
+        conn.close();
+        return book;
     }
 }

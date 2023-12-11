@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li class="w-full flex items-center text-left my-2 px-2 py-1 hover:bg-blue-400 hover:rounded-lg hover:text-blue-100 hover:cursor-pointer">
-                <a href="" class="flex flex-row">
+                <a href="faculty" target="main-frame" class="flex flex-row">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
                         <path fill-rule="evenodd" d="M4.5 2.25a.75.75 0 000 1.5v16.5h-.75a.75.75 0 000 1.5h16.5a.75.75 0 000-1.5h-.75V3.75a.75.75 0 000-1.5h-15zM9 6a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5H9zm-.75 3.75A.75.75 0 019 9h1.5a.75.75 0 010 1.5H9a.75.75 0 01-.75-.75zM9 12a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5H9zm3.75-5.25A.75.75 0 0113.5 6H15a.75.75 0 010 1.5h-1.5a.75.75 0 01-.75-.75zM13.5 9a.75.75 0 000 1.5H15A.75.75 0 0015 9h-1.5zm-.75 3.75a.75.75 0 01.75-.75H15a.75.75 0 010 1.5h-1.5a.75.75 0 01-.75-.75zM9 19.5v-2.25a.75.75 0 01.75-.75h4.5a.75.75 0 01.75.75v2.25a.75.75 0 01-.75.75h-4.5A.75.75 0 019 19.5z" clip-rule="evenodd" />
                     </svg>
@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li class="w-full flex items-center text-left my-2 px-2 py-1 hover:bg-blue-400 hover:rounded-lg hover:text-blue-100 hover:cursor-pointer">
-                <a href="" class="flex flex-row">
+                <a href="class" target="main-frame" class="flex flex-row">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
                         <path fill-rule="evenodd" d="M8.25 6.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM15.75 9.75a3 3 0 116 0 3 3 0 01-6 0zM2.25 9.75a3 3 0 116 0 3 3 0 01-6 0zM6.31 15.117A6.745 6.745 0 0112 12a6.745 6.745 0 016.709 7.498.75.75 0 01-.372.568A12.696 12.696 0 0112 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 01-.372-.568 6.787 6.787 0 011.019-4.38z" clip-rule="evenodd" />
                         <path d="M5.082 14.254a8.287 8.287 0 00-1.308 5.135 9.687 9.687 0 01-1.764-.44l-.115-.04a.563.563 0 01-.373-.487l-.01-.121a3.75 3.75 0 013.57-4.047zM20.226 19.389a8.287 8.287 0 00-1.308-5.135 3.75 3.75 0 013.57 4.047l-.01.121a.563.563 0 01-.373.486l-.115.04c-.567.2-1.156.349-1.764.441z" />
@@ -50,7 +50,7 @@
                 </a>
             </li>
             <li class="w-full flex items-center text-left my-2 px-2 py-1 hover:bg-blue-400 hover:rounded-lg hover:text-blue-100 hover:cursor-pointer">
-                <a href="" class="flex flex-row">
+                <a href="student" target="main-frame" class="flex flex-row">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
                         <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
                     </svg>
@@ -58,7 +58,7 @@
                 </a>
             </li>
             <li class="w-full flex items-center text-left my-2 px-2 py-1 hover:bg-blue-400 hover:rounded-lg hover:text-blue-100 hover:cursor-pointer">
-                <a href="" class="flex flex-row">
+                <a href="book" target="main-frame" class="flex flex-row">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
                         <path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.47a.75.75 0 001-.708V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
                     </svg>
@@ -85,7 +85,7 @@
         </ul>
         <a href="" class="text-base font-medium text-blue-600 my-2 hover:text-blue-800">Đăng xuất</a>
     </div>
-    <iframe src="BorrowBooks.html" class="flex-1 w-[80%] bg-blue-100"></iframe>
+    <iframe src="test.html" name="main-frame" class="flex-1 w-[80%] bg-blue-100"></iframe>
 </div>
 </body>
 </html>

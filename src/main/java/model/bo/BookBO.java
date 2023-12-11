@@ -10,12 +10,6 @@ public class BookBO {
     public ArrayList<Book> getAllBooks() throws Exception {
         return bookDAO.getAllBooks();
     }
-    public ArrayList<Book> getBooksById(String id) throws Exception {
-        return bookDAO.getBooksById(id);
-    }
-    public ArrayList<Book> getBooksByName(String name) throws Exception {
-        return bookDAO.getBooksByName(name);
-    }
     public void addBook(Book book) throws Exception {
         bookDAO.addBook(book);
     }
@@ -25,5 +19,11 @@ public class BookBO {
     public void deleteBook(String id) throws Exception {
         bookDAO.deleteBook(id);
     }
+    public boolean isIdExist(String id) throws Exception {
+        return bookDAO.isIdExist(id);
+    }
 
+    public Book getBookById(String id) throws Exception {
+        return bookDAO.getBookById(id);
+    }
 }
