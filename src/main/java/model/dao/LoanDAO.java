@@ -3,7 +3,6 @@ package model.dao;
 import java.sql.*;
 import java.util.ArrayList;
 
-import model.bean.ClassEntity;
 import model.bean.Loan;
 
 public class LoanDAO {
