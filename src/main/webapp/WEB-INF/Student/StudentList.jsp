@@ -36,7 +36,7 @@
 
                     ArrayList<ClassEntity> classCBB = (ArrayList<ClassEntity>) request.getAttribute("classCBB");
                 %>
-                <form class="flex flex-row justify-between my-4" method="get"  action="student?mod=search">
+                <form class="flex flex-row justify-between my-4" method="get" action="student?mod=search">
                     <div class="flex bg-white px-3 py-2 rounded-md w-[300px]">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gray" class="w-6 h-6">
                             <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z" clip-rule="evenodd" />
@@ -113,7 +113,7 @@
                         <td class="text-sm text-gray-900 font-normal px-6 py-4 whitespace-nowrap text-center">
                             <ul class="flex justify-evenly text-base">
                                 <li>
-                                    <a href="loan?studentId=<%= studentList.get(i).getId() %>">
+                                    <a href="loan?searchStudentId=<%= studentList.get(i).getId() %>">
                                         <i class="view-icon fa-regular fa-eye"></i>
                                     </a>
                                 </li>
