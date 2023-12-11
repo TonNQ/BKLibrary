@@ -18,8 +18,7 @@
         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">
                 <div class="flex flex-row justify-between items-center py-3 my-3 border-b-[2px] border-blue-400">
-                    <div class="text-2xl text-blue-600 uppercase font-bold">Thêm sách</div>
-                    <a href="" class="text-center mr-2 py-2 px-4 min-w-[200px] uppercase text-white bg-blue-500 hover:bg-blue-600 hover:cursor-pointer rounded-md font-semibold">Thêm file</a>
+                    <div class="text-2xl text-blue-600 uppercase font-bold">Cập nhật sách</div>
                 </div>
                 <form method="post" name="update" action="?action=update&id=<%= book.getId() %>" onsubmit="return validateForm()">
                     <div class="flex flex-row w-[100%]">
@@ -68,7 +67,7 @@
                     </div>
                     <div class="flex flex-row justify-end">
                         <input type="submit" value="Cập nhật" class="text-center mr-2 py-2 px-4 min-w-[200px] uppercase text-white bg-blue-500 hover:bg-blue-600 hover:cursor-pointer rounded-md font-semibold">
-                        <a href="book" class="text-center ml-2 py-2 px-4 min-w-[200px] uppercase text-white bg-stone-400 hover:bg-stone-500 hover:cursor-pointer rounded-md font-semibold">Quay lại</a>
+                        <a href="javascript:history.back()" class="text-center ml-2 py-2 px-4 min-w-[200px] uppercase text-white bg-stone-400 hover:bg-stone-500 hover:cursor-pointer rounded-md font-semibold">Quay lại</a>
                     </div>
                 </form>
             </div>

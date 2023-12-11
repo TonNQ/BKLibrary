@@ -4,12 +4,10 @@ import model.bean.Book;
 import model.bo.BookBO;
 import model.bo.CategoryBO;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @WebServlet(name = "BookController", urlPatterns = "/book")
 public class BookController extends HttpServlet {
@@ -40,6 +38,11 @@ public class BookController extends HttpServlet {
                     resp.setStatus(HttpServletResponse.SC_OK);
                 }
                 return;
+            } else if (mod.equals("filter")) {
+                String categoryId = req.getParameter("category");
+                req.setAttribute("categoryList", categoryBO.getAllCategories());
+                req.setAttribute("bookList", bookBO.getBooksByCategoryId(Integer.parseInt(categoryId)));
+                destination = "/WEB-INF/Book/BookList.jsp";
             }
 
             req.getRequestDispatcher(destination).forward(req, resp);

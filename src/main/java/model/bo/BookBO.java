@@ -26,4 +26,8 @@ public class BookBO {
     public Book getBookById(String id) throws Exception {
         return bookDAO.getBookById(id);
     }
+
+    public ArrayList<Book> getBooksByCategoryId(int categoryId) throws Exception{
+        return bookDAO.getBooksByCategoryId(categoryId);
+    }
 }
