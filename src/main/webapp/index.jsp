@@ -9,7 +9,7 @@
 <body>
 <div class="flex flex-row w-[100wh] h-[100vh] bg-white">
     <div class="w-[280px] bg-blue-300 flex flex-col items-center justify-start">
-        <img src="dist/img/dut.jpg" class="w-[120px] h-[120px] rounded-2xl my-4 " />
+        <img src="img/dut.jpg" class="w-[120px] h-[120px] rounded-2xl my-4 " />
         <div class="text-center text-sm mb-6">
             <div>Bạn đang đăng nhập tài khoản</div>
             <div class="font-medium text-blue-700">thuthu1@dut.udn.vn</div>
