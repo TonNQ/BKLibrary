@@ -8,11 +8,13 @@ public class ConnectionToDB {
     private static Connection cnn;
     public static Connection ConnectToMySQL() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver"); // của Toàn nha
 //            String url = "jdbc:mysql://localhost:3333/BKLibrary";
-            String url = "jdbc:mysql://localhost:3306/BKLibrary";
+            String url = "jdbc:mysql://localhost:3306/bklibrary";
 //            String url = "jdbc:mysql://localhost:3306/btnhom";
-            cnn = DriverManager.getConnection(url, "root", "08334311210");
+//            cnn = DriverManager.getConnection(url, "root", "08334311210");
+            cnn = DriverManager.getConnection(url, "root", ""); // của Toàn nha
             return cnn;
         } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
