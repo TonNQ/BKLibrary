@@ -16,7 +16,7 @@
             <div class="overflow-hidden">
                 <div class="flex flex-row justify-between items-center py-3 my-3 border-b-[2px] border-blue-400">
                     <div class="text-2xl text-blue-600 uppercase font-bold">Lịch sử mượn trả sách</div>
-                    <a href="" class="py-2 px-3 text-white bg-blue-500 hover:bg-blue-600 rounded-md font-semibold">Thêm sách mượn</a>
+                    <a href="loan?mod=insert" class="py-2 px-3 text-white bg-blue-500 hover:bg-blue-600 rounded-md font-semibold">Thêm sách mượn</a>
                 </div>
                 <%
                     String searchStudentId = (String) request.getParameter("searchStudentId");

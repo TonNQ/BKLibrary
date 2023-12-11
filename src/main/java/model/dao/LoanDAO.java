@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.*;
 import java.util.ArrayList;
 
+import model.bean.ClassEntity;
 import model.bean.Loan;
 
 public class LoanDAO {
@@ -45,5 +46,19 @@ public class LoanDAO {
         preparedStatement.setDate(1, new Date(System.currentTimeMillis()));
         preparedStatement.setInt(2, id);
         preparedStatement.executeUpdate();
+    }
+
+    public void addLoanList(ArrayList<Loan> loanList) throws SQLException {
+        for (int i = 0; i < loanList.size(); i++) {
+            Loan loan = loanList.get(i);
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO libraryloan (StudentId, BookId, BorrowDate, DueDate, ReturnDate) VALUES (?, ?, ?, ?, ?)");
+            statement.setString(1, loan.getStudentId());
+            statement.setString(2, loan.getBookId());
+            statement.setDate(3, loan.getBorrowDate());
+            statement.setDate(4, loan.getDueDate());
+            statement.setDate(5, loan.getReturnDate());
+            statement.executeUpdate();
+        }
+
     }
 }

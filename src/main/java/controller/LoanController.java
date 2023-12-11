@@ -1,6 +1,9 @@
 package controller;
 
+import model.bean.Book;
+import model.bean.ClassEntity;
 import model.bean.Loan;
+import model.bo.BookBO;
 import model.bo.LoanBO;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.sql.Date;
 
 @WebServlet(name = "LoanController", urlPatterns = "/loan")
 public class LoanController extends HttpServlet {
@@ -20,6 +26,7 @@ public class LoanController extends HttpServlet {
             throws ServletException, IOException {
         String destination = null;
         LoanBO loanBO = new LoanBO();
+        BookBO bookBO = new BookBO();
 
         String mod = request.getParameter("mod");
         int id = request.getParameter("id") != null
@@ -37,11 +44,14 @@ public class LoanController extends HttpServlet {
                 : 1;
 
         ArrayList<Loan> loanList = null;
+        ArrayList<Book> bookList = null;
 
         try {
             if (mod != null) {
                 switch (mod) {
                     case "insert":
+                        bookList = bookBO.getAllBooks();
+                        request.setAttribute("bookList", bookList);
                         destination = "/WEB-INF/Loan/LoanInsert.jsp";
                         break;
 
@@ -67,28 +77,41 @@ public class LoanController extends HttpServlet {
 
             RequestDispatcher rd = getServletContext().getRequestDispatcher(destination);
             rd.forward(request, response);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // LoanBO loanBO = new LoanBO();
+         LoanBO loanBO = new LoanBO();
 
-        // String action = request.getParameter("action");
-
-        // try {
-        //     if (action != null) {
-        //         switch (action) {
-        //             case "insert":
-        //                 // thêm mượn sách nè
-        //                 break;
-        //         }
-        //     }
-        //     doGet(request, response);
-        // } catch (SQLException e) {
-        //     throw new RuntimeException(e);
-        // }
+         String action = request.getParameter("action");
+         try {
+             if (action != null) {
+                 switch (action) {
+                     case "insert":
+                         ArrayList<Loan> loanList = new ArrayList<>();
+                         String[] bookIds = request.getParameter("bookIds").split(",");
+                         String studentId = request.getParameter("studentId");
+                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                         java.util.Date utilBorrowDate = new java.util.Date();
+                         java.sql.Date borrowDate = new java.sql.Date(utilBorrowDate.getTime());
+                         java.util.Date utilDueDate = dateFormat.parse(request.getParameter("dueDate"));
+                         java.sql.Date dueDate = new java.sql.Date(utilDueDate.getTime());
+                         for (int i = 0; i < bookIds.length; i++) {
+                             Loan loan = new Loan(bookIds[i], studentId, borrowDate, dueDate);
+                             loanList.add(loan);
+                         }
+                         loanBO.addLoanList(loanList);
+                         break;
+                 }
+             }
+             doGet(request, response);
+         } catch (SQLException e) {
+             throw new RuntimeException(e);
+         } catch (ParseException e) {
+             throw new RuntimeException(e);
+         }
     }
 }
