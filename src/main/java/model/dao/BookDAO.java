@@ -10,7 +10,7 @@ public class BookDAO {
         ArrayList<Book> listBook = new ArrayList<>();
         Connection conn = ConnectionToDB.ConnectToMySQL();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from book join category on book.CategoryId = category.Id");
+        ResultSet rs = stmt.executeQuery("select * from book left join category on book.CategoryId = category.Id");
         while (rs.next()) {
             Book book = new Book();
             book.setId(rs.getString("Id"));
@@ -18,7 +18,11 @@ public class BookDAO {
             book.setAuthor(rs.getString("Author"));
             book.setQuantity(rs.getInt("Quantity"));
             book.setCategoryId(rs.getInt("CategoryId"));
-            book.setCategoryName(rs.getString("category.Name"));
+            if (rs.getString("category.Name") == null) {
+                book.setCategoryName("");
+            } else {
+                book.setCategoryName(rs.getString("category.Name"));
+            }
             listBook.add(book);
         }
         conn.close();
@@ -72,7 +76,7 @@ public class BookDAO {
 
     public Book getBookById(String id) throws SQLException {
         Connection conn = ConnectionToDB.ConnectToMySQL();
-        PreparedStatement stmt = conn.prepareStatement("select * from book join category on book.CategoryId = category.Id where book.Id=?");
+        PreparedStatement stmt = conn.prepareStatement("select * from book left join category on book.CategoryId = category.Id where book.Id=?");
         stmt.setString(1, id);
         ResultSet rs = stmt.executeQuery();
         Book book = new Book();
@@ -86,5 +90,25 @@ public class BookDAO {
         }
         conn.close();
         return book;
+    }
+
+    public ArrayList<Book> getBooksByCategoryId(int categoryId) throws SQLException {
+        Connection conn = ConnectionToDB.ConnectToMySQL();
+        ArrayList<Book> listBook = new ArrayList<>();
+        PreparedStatement stmt = conn.prepareStatement("select * from book left join category on book.CategoryId = category.Id where book.CategoryId=?");
+        stmt.setInt(1, categoryId);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Book book = new Book();
+            book.setId(rs.getString("Id"));
+            book.setName(rs.getString("Name"));
+            book.setAuthor(rs.getString("Author"));
+            book.setQuantity(rs.getInt("Quantity"));
+            book.setCategoryId(rs.getInt("CategoryId"));
+            book.setCategoryName(rs.getString("category.Name"));
+            listBook.add(book);
+        }
+        conn.close();
+        return listBook;
     }
 }

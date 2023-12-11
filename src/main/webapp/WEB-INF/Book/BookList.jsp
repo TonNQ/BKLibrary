@@ -26,7 +26,7 @@
                         </svg>
                         <input type="text" name="search" id="search" placeholder="Nhập mã hoặc tên sách" class="flex-1 bg-white ml-2 outline-none">
                     </div>
-                    <div class="flex items-center justify-center">
+                    <div class="flex items-center justify-center filter">
                         <span class="mr-2 font-normal text-base">Lọc: </span>
                         <select class="min-w-[200px] rounded-md px-3 py-2" id="filter">
                             <option value="">Tất cả</option>
@@ -111,11 +111,27 @@
                     <% } %>
                     </tbody>
                 </table>
+                <div class="flex flex-row justify-end mt-5 come-back">
+                </div>
             </div>
         </div>
     </div>
 </div>
 <script>
+    function getQueryParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+    if (getQueryParameter('mod') === 'filter') {
+        const filterElement = document.querySelector('.filter');
+        if (filterElement) {
+            filterElement.style.display = 'none';
+        }
+        const comeBackElement = document.querySelector('.come-back');
+        if (comeBackElement) {
+            comeBackElement.innerHTML = '<a href="javascript:history.back()" class="text-center ml-2 py-2 px-4 min-w-[200px] uppercase text-white bg-stone-400 hover:bg-stone-500 hover:cursor-pointer rounded-md font-semibold">Quay lại</a>';
+        }
+    }
     const handleSearchAndFilter = () => {
         const search = document.getElementById('search');
         const filter = document.getElementById('filter');
