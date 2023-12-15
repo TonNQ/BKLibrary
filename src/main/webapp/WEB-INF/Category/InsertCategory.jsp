@@ -16,7 +16,7 @@
                 <div class="flex flex-row justify-between items-center py-3 my-3 border-b-[2px] border-blue-400">
                     <div class="text-2xl text-blue-600 uppercase font-bold">Thêm danh mục</div>
                 </div>
-                <form method="post" name="add" action="?action=insert" onsubmit="return validateForm()">
+                <form method="post" name="add" action="category?action=insert" onsubmit="return validateForm()">
                     <div class="flex flex-row w-[100%]">
                         <div class="w-[50%] flex flex-col mr-2 my-2">
                             <label for="name" class="text-base font-medium mb-1">Tên danh mục: </label>
@@ -48,7 +48,7 @@
     function checkCategoryName() {
         const categoryName = document.forms["add"]["name"].value;
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', '?mod=check&name=' + categoryName, true);
+        xhr.open('GET', 'category?mod=check&name=' + categoryName, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {

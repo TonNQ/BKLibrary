@@ -16,7 +16,7 @@
                 <div class="flex flex-row justify-between items-center py-3 my-3 border-b-[2px] border-blue-400">
                     <div class="text-2xl text-blue-600 uppercase font-bold">Thêm sách</div>
                 </div>
-                <form method="post" name="add" action="?action=insert" onsubmit="return validateForm()">
+                <form method="post" name="add" action="book?action=insert" onsubmit="return validateForm()">
                     <div class="flex flex-row w-[100%]">
                         <div class="w-[50%] flex flex-col mr-2 my-2">
                             <label for="bookId" class="text-base font-medium mb-1">Mã sách: </label>
@@ -86,7 +86,7 @@
     function checkBookId() {
         const bookId = document.forms["add"]["bookId"].value;
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', '?mod=check&id=' + bookId, true);
+        xhr.open('GET', 'book?mod=check&id=' + bookId, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {

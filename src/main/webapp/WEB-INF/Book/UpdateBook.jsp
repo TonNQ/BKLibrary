@@ -20,7 +20,7 @@
                 <div class="flex flex-row justify-between items-center py-3 my-3 border-b-[2px] border-blue-400">
                     <div class="text-2xl text-blue-600 uppercase font-bold">Cập nhật sách</div>
                 </div>
-                <form method="post" name="update" action="?action=update&id=<%= book.getId() %>" onsubmit="return validateForm()">
+                <form method="post" name="update" action="book?action=update&id=<%= book.getId() %>" onsubmit="return validateForm()">
                     <div class="flex flex-row w-[100%]">
                         <div class="w-[50%] flex flex-col mr-2 my-2">
                             <label for="bookId" class="text-base font-medium mb-1">Mã sách: </label>
