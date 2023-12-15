@@ -46,21 +46,18 @@ public class CategoryController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         try {
             req.setCharacterEncoding("UTF-8");
-            String destination = null;
             String action = req.getParameter("action");
             CategoryBO categoryBO = new CategoryBO();
             if (action.equals("insert")) {
                 String name = req.getParameter("name");
                 categoryBO.addCategory(name);
-                destination = "/category";
             } else if (action.equals("update")) {
                 String id = req.getParameter("id");
                 String name = req.getParameter("name");
                 categoryBO.updateCategory(new Category(Integer.parseInt(id), name));
-                destination = "/category";
             }
 
-            resp.sendRedirect(destination);
+            doGet(req, resp);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

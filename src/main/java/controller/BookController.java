@@ -55,7 +55,6 @@ public class BookController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         try {
             req.setCharacterEncoding("UTF-8");
-            String destination = null;
             String action = req.getParameter("action");
             BookBO bookBO = new BookBO();
             if (action.equals("insert")) {
@@ -65,7 +64,6 @@ public class BookController extends HttpServlet {
                 String quantity = req.getParameter("quantity");
                 String categoryId = req.getParameter("category");
                 bookBO.addBook(new Book(bookId, name, author, Integer.parseInt(quantity), Integer.parseInt(categoryId)));
-                destination = "/book";
             } else if (action.equals("update")) {
                 String bookId = req.getParameter("bookId");
                 String name = req.getParameter("name");
@@ -73,10 +71,9 @@ public class BookController extends HttpServlet {
                 String quantity = req.getParameter("quantity");
                 String categoryId = req.getParameter("category");
                 bookBO.updateBook(new Book(bookId, name, author, Integer.parseInt(quantity), Integer.parseInt(categoryId)));
-                destination = "/book";
             }
 
-            resp.sendRedirect(destination);
+            doGet(req, resp);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

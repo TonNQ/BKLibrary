@@ -88,6 +88,7 @@ public class FacultyController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         FacultyBO facultyBO = new FacultyBO();
 
         String action = request.getParameter("action");
