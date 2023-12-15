@@ -10,8 +10,8 @@ public class ConnectionToDB {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 //            String url = "jdbc:mysql://localhost:3333/BKLibrary";
-//           String url = "jdbc:mysql://localhost:3306/BKLibrary";
-             String url = "jdbc:mysql://localhost:3306/btnhom";
+           String url = "jdbc:mysql://localhost:3306/BKLibrary";
+//             String url = "jdbc:mysql://localhost:3306/btnhom";
              cnn = DriverManager.getConnection(url, "root", "")      ;
 //            cnn = DriverManager.getConnection(url, "root", "08334311210");
 

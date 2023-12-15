@@ -19,7 +19,7 @@
       </div>
       <div class="w-[100%] flex flex-col my-3">
         <label for="password" class="text-lg font-medium mb-1">Mật khẩu: </label>
-        <input type="password" name="password" id="password" placeholder="Nhập mật khẩu" class="text-lg rounded-md px-4 py-2 mb-1">
+        <input type="password" name="password" id="password" placeholder="Nhập mật khẩu" class="text-lg rounded-md px-4 py-2 mb-1" onchange="handleInputChange('password')">
         <span class="text-red-500 font-medium text-sm min-h-[3rem]" id="passwordError"></span>
       </div>
       <div class="flex flex-row w-[100%] mt-3">
@@ -69,9 +69,11 @@
     }
     if (fieldName === 'password' && input) {
       if (isValidPassword(input)) {
+        console.log('success')
         document.getElementById(fieldName + 'Error').innerHTML = '';
       }
       else {
+        console.log('error')
         document.getElementById(fieldName + 'Error').innerHTML = 'Mật khẩu cần có tối thiểu 8 ký tự, có ít nhất một ký tự thường, một ký tự in hoa, một ký tự số và một ký tự đặc biệt ';
       }
     }
